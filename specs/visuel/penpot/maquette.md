@@ -1,6 +1,6 @@
 # Maquette Penpot — Social proof section
 
-> SDL-FM 1.5.0 Phase 3 (remise à niveau, lot 1). Fichier Penpot : « FM Newbie » (créé par Koya ; nom vérifié avant chaque écriture), page « Social proof ». **En attente de validation (G3).**
+> SDL-FM 1.5.0 Phase 3 (remise à niveau, lot 1). Fichier Penpot : « FM Newbie » (créé par Koya ; nom vérifié avant chaque écriture), page « Social proof ». **Validée (G3, 2026-11-05)** avec les propositions : attribution FM en pied de page, seuils 5 % (desktop) et 7,3 % (mobile), photos sans contour, « Rated 5 Stars in Reviews » centré, tablette en colonne de 540 px.
 > Décisions G2 appliquées : paragraphe `#846C83` (Q-A1), « Verified Buyer » `#F075AC` (Q-A2), étoiles décoratives (Q-A3), sémantique h1, listes, figure + blockquote + figcaption (Q-B1, noms des calques), disposition mobile centrée jusqu'à 1023 px (Q-B2).
 
 ## Rendu des exports

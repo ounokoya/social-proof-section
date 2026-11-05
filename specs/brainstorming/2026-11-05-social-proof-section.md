@@ -26,3 +26,15 @@ Koya : « Je valide (G2) » pour le lot 1. Analyse : `specs/visuel/social-proof-
 | Q-A3 | Étoiles à 2,65:1 | Décoratives (aria-hidden), le texte porte l'information |
 | Q-B1 | Sémantique | h1, deux listes, témoignages en figure + blockquote + figcaption |
 | Q-B2 | Pas de tablette, desktop en 1110 px | Disposition mobile centrée (540 px max) jusqu'à 1023 px, desktop fluide dès 1024 px |
+
+## Maquette validée (G3, 2026-11-05)
+
+Koya : « Je valide (G3) » pour le lot 1. Maquette : `specs/visuel/penpot/maquette.md`. Toutes les propositions sont retenues.
+
+| # | Point | Décision |
+|---|---|---|
+| G3-1 | Attribution FM (absente des images) | Gardée en pied de page : 11 px, liens `#3E52A3` soulignés ; survol : soulignement retiré ; focus : contour 2 px `#3E52A3` décalé de 2 px |
+| G3-2 | Seuils visuels | Desktop 5 % ; mobile 7,3 % (écart de 6,32 % dû au dessin des lettres fines) |
+| G3-3 | Photos | Sans contour, comme l'image FM |
+| G3-4 | Note « Reviews » (mobile) | Centrée, comme les deux autres (l'image FM la décale de 4 px) |
+| G3-5 | Tablette (Q-B2) | Disposition mobile dans une colonne de 540 px centrée |
