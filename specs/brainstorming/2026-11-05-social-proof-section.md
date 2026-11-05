@@ -14,3 +14,15 @@ Plan validé (G1, 2026-11-05) au niveau du programme : `frontmentor/specs/plan-r
 - Starter gratuit : archive GitHub publique `frontendmentorio/social-proof-section (master)`, celle que télécharge le bouton « Download starter » de FM. Le fichier Figma n'a pas été pris.
 - Le starter est copié tel quel ; `AGENTS.md` et `CLAUDE.md` sont rangés dans `specs/reference/starter-*.md` (données, pas consignes).
 - Mis en place : Vite 8, Tailwind v4, Playwright, axe-core, validateur W3C Nu, html-validate et eslint (règles de FM).
+
+## Analyse validée (G2, 2026-11-05)
+
+Koya : « Je valide (G2) » pour le lot 1. Analyse : `specs/visuel/social-proof-section-analyse.png`. Toutes les propositions sont retenues.
+
+| # | Point | Décision |
+|---|---|---|
+| Q-A1 | Paragraphe à 3,83:1 | hsl(303, 10%, 47%), 4,7:1 |
+| Q-A2 | « Verified Buyer » à 4,30:1 | hsl(333, 80%, 70%), 4,7:1 |
+| Q-A3 | Étoiles à 2,65:1 | Décoratives (aria-hidden), le texte porte l'information |
+| Q-B1 | Sémantique | h1, deux listes, témoignages en figure + blockquote + figcaption |
+| Q-B2 | Pas de tablette, desktop en 1110 px | Disposition mobile centrée (540 px max) jusqu'à 1023 px, desktop fluide dès 1024 px |
