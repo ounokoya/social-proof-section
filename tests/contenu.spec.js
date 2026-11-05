@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { open, title, intro, ratings, testimonialList, testimonials, figure, style } from './helpers.js'
+import { open, title, intro, ratings, testimonialList, testimonials, figure, style, cssColor } from './helpers.js'
 
 // Spec §2 et §3 — S7 à S10
 
@@ -45,7 +45,7 @@ test('S9 — 3 photos chargées et décoratives ; chaque figure nommée par son 
 })
 
 test('S10 — couleurs AA de G2 : accroche et « Verified Buyer »', async ({ page }) => {
-  expect(await style(intro(page), 'color')).toBe('rgb(132, 108, 131)')
+  expect(await style(intro(page), 'color')).toBe(await cssColor(page, 'hsl(303, 10%, 47%)'))
   await expect(testimonials(page)).toHaveCount(3)
-  for (let i = 0; i < 3; i++) expect(await style(testimonials(page).nth(i).getByText('Verified Buyer', { exact: true }), 'color')).toBe('rgb(240, 117, 172)')
+  for (let i = 0; i < 3; i++) expect(await style(testimonials(page).nth(i).getByText('Verified Buyer', { exact: true }), 'color')).toBe(await cssColor(page, 'hsl(333, 80%, 70%)'))
 })

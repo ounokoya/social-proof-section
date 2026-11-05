@@ -59,3 +59,9 @@ export function diffRatio(screenshot, referenceFile) {
   }
   return different / (actual.width * actual.height)
 }
+
+// Couleur d'une valeur de la spec (hsl()), telle que le navigateur la calcule
+export const cssColor = (page, value) => page.evaluate((v) => {
+  const el = document.createElement('span'); el.style.color = v; document.body.append(el)
+  const c = getComputedStyle(el).color; el.remove(); return c
+}, value)

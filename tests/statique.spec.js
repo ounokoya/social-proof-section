@@ -64,3 +64,12 @@ test('ADR-0004 — rien n\'est chargé hors du domaine ; League Spartan 400, 500
   expect(weights).toEqual(['400', '500', '700'])
   expect(outside).toEqual([])
 })
+
+// Règle FM vue sur les solutions précédentes (SDL-FM Phase 6) : les longueurs écrites à la main sont en rem
+test('Règles FM — aucune longueur en px écrite à la main (src/style.css, valeurs arbitraires du HTML)', () => {
+  const css = readFileSync(root('src/style.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '')
+  const html = readFileSync(root('index.html'), 'utf8')
+  const arbitrary = [...html.matchAll(/class="([^"]*)"/g)].flatMap((m) => m[1].split(/\s+/)).filter((c) => /\[[^\]]*\d+(\.\d+)?px/.test(c))
+  expect(css.match(/\b\d+(\.\d+)?px\b/g) ?? []).toEqual([])
+  expect(arbitrary).toEqual([])
+})
