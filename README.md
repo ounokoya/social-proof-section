@@ -1,104 +1,97 @@
-# Frontend Mentor - Social proof section
+# Frontend Mentor - Social proof section solution
 
-![Design preview for the Social proof section coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [Social proof section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/social-proof-section-6e0qTv_bA). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Workflow](#workflow)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+  - [AI Collaboration](#ai-collaboration)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+## Overview
 
-**To do this challenge, you need a basic understanding of HTML and CSS.**
+### The challenge
 
-## The challenge
-
-Your challenge is to build out this social proof section and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-Your users should be able to:
+Users should be able to:
 
 - View the optimal layout for the section depending on their device's screen size
 
-### Want some support on the challenge? 
+### Screenshot
 
-[Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+![Social proof section on desktop](./screenshot.jpg)
 
-## Where to find everything
+### Links
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+- Live Site URL: [ounokoya.github.io/social-proof-section](https://ounokoya.github.io/social-proof-section/)
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+## My process
 
-If you would like the Figma design file to gain experience using professional tools and build more accurate projects faster, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+### Built with
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+- Semantic HTML5: a list of ratings, a list of testimonials, each testimonial a `figure` with its `blockquote` and `figcaption`; decorative stars and photos with `alt=""`
+- [Tailwind CSS v4](https://tailwindcss.com/) — design tokens in `@theme`, default palette removed
+- League Spartan served with the site through [Fontsource](https://fontsource.org/fonts/league-spartan)
+- Background patterns as CSS backgrounds, switched at 1024 px
+- Mobile-first layout: a centred column (540 px max) below 1024 px, the staggered desktop layout from 1024 px
+- [Vite](https://vite.dev/) for the build, deployed on GitHub Pages from the `gh-pages` branch (`npm run deploy`)
+- [Playwright](https://playwright.dev/), [axe-core](https://github.com/dequelabs/axe-core), the W3C Nu validator, html-validate and ESLint for tests
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+### Workflow
 
-## Using AI coding assistants
+Before any code, the design was analysed and rebuilt:
 
-We've included two files to help you if you're using AI coding assistants (like Claude, GitHub Copilot, Cursor, etc.) while working on this challenge:
+1. **Visual analysis in Excalidraw** — measurements in px, contrast checks of every text → [`specs/visuel/`](./specs/visuel/)
+2. **Penpot mockup** — library, components, desktop, mobile and tablet screens, visual thresholds calibrated against the design JPGs → [`specs/visuel/penpot/`](./specs/visuel/penpot/)
+3. **Spec, then tests** — 18 Given/When/Then scenarios and the accessible names the tests rely on → [`specs/specifications/`](./specs/specifications/); the tests were written before the code and checked to fail on the starter
+4. **Decisions** — tokens, font loading, images and patterns, layout → [`specs/adr/`](./specs/adr/)
+5. **Code** — one commit per part (structure, mobile, desktop, states), then a walk-through in a real browser → [`specs/analyse/`](./specs/analyse/)
 
-- `AGENTS.md` - Contains detailed instructions for AI assistants on how to help you with this challenge. It's tailored to this challenge's difficulty level, so the AI will provide guidance appropriate to your learning stage—offering more support for beginner challenges and encouraging more independence on advanced ones.
-- `CLAUDE.md` - A pointer file that directs Claude-based tools to the AGENTS.md instructions.
+### What I learned
 
-**How to use them:** You don't need to do anything! These files are automatically detected by most AI coding tools. The AI will read them and adjust its behavior to be a better learning partner—guiding you toward solutions rather than just giving you the answers.
+**Staggered layouts without absolute positioning.** The ratings move 48 px to the right one after the other and the testimonials move down 16 px. Margins and offsets on otherwise normal flex and grid items keep the reading order and still shrink between 1024 and 1440 px:
 
-**Note:** These files are designed to help you *learn*, not to do the work for you. The AI is instructed to ask questions, give hints, and explain concepts rather than writing complete solutions.
+```html
+<li class="lg:w-[27.8125rem] lg:max-w-full lg:nth-2:ml-12 lg:nth-3:ml-[6.0625rem]">…</li>
+```
 
-## Building your project
+**Text that wraps like the design.** The third line of the mobile paragraph measures 328 px in Chromium for a 327 px column, so it wrapped one word earlier. The fix is to widen the block by a pixel on each side, never to touch letter spacing. `text-rendering: geometricPrecision` also keeps glyph widths unrounded, so the lines break where the design breaks them.
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+**Contrast fixes that keep the look.** The paragraph colour (3.83:1) and "Verified Buyer" (4.30:1) were slightly too light: `hsl(303, 10%, 47%)` and `hsl(333, 80%, 70%)` reach 4.7:1 with nearly the same colours. The stars are decorative: the text says "Rated 5 Stars".
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+### Continued development
 
-## Deploying your project
+- **Visual comparison with the design files.** Screenshots differ from the Frontend Mentor JPGs by 3.3 % (desktop) and 5.5 % (mobile) of pixels; the mobile threshold is 7.3 %, because the thin League Spartan letters are drawn slightly differently from the JPG.
+- In the design, "Rated 5 Stars in Reviews" (mobile) sits 4 px right of the centre; the page centres it like the other two.
+- **Tablet**: my own proposal, the mobile column centred at 540 px.
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+### Useful resources
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+- [MDN — `<figure>` and `<figcaption>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure) — marking up a testimonial.
+- [MDN — `text-rendering`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-rendering) — unrounded glyph widths.
+- [Fontsource — League Spartan](https://fontsource.org/fonts/league-spartan) — self-hosted font files.
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://www.frontendmentor.io/guides/hosting-your-solution).
+### AI Collaboration
 
-## Create a custom `README.md`
+I used **Claude (Claude Code)** as a pair, inside my own spec-driven workflow where I validated each step before the next one:
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+- **Planning**: Claude listed my unfinished challenges and my old solutions that needed work, and wrote the plan, which I validated.
+- **Design analysis and mockup**: Claude measured the JPG designs, drew the annotated Excalidraw analysis and built the Penpot mockup; I reviewed both and decided on the contrast fixes, the tablet layout and the visual thresholds.
+- **Spec and tests**: written by Claude before any code, from the validated mockup.
+- **Technical decisions**: Claude presented the options; I chose to self-host the font with Fontsource, as in my previous challenge.
+- **Code**: written by Claude from the spec — I confirmed this split at the code lock — one commit per part, with the tests run at each step.
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+What worked well: measuring the design's lines in the browser explained every wrap that differed. What needed my decisions: the colour fixes, the tablet layout and the thresholds.
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+## Author
 
-## Submitting your solution
-
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://www.frontendmentor.io/guides/how-to-submit-solutions) for tips on how to do this.
-
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
-
-## Sharing your solution
-
-There are multiple places you can share your solution:
-
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community). 
-2. Share on [X (formerly Twitter)](https://x.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in your post. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on [LinkedIn](https://www.linkedin.com/company/frontend-mentor/).
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
-
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
-
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
-
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
-
-**Have fun building!** 🚀
+- Frontend Mentor - [@ounokoya](https://www.frontendmentor.io/profile/ounokoya)
+- GitHub - [@ounokoya](https://github.com/ounokoya)
