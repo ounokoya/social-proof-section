@@ -17,11 +17,29 @@
   --color-link: hsl(228, 45%, 44%); /* G3-1 : liens de l'attribution (starter) */
 
   --font-sans: "League Spartan", sans-serif;
+  --text-title: 3.25rem;
+  --text-title--line-height: 0.933;
+  --text-title-mobile: 2.3125rem;
+  --text-title-mobile--line-height: 0.865;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.389;
+  --text-name: 1.0625rem;
+  --text-name--line-height: 1.176;
+  --text-quote: 1rem;
+  --text-quote--line-height: 1.375;
+  --text-attribution: 0.6875rem;
+  --text-attribution--line-height: 1.5;
+
+  --radius-card: 0.5rem;
 }
 
 @layer base {
+  /* ADR-0005 : motifs décoratifs en fond, en haut à gauche et en bas à droite */
   body {
-    @apply font-sans text-very-dark-magenta;
+    @apply min-h-dvh font-sans text-very-dark-magenta;
+    background:
+      url("../images/bg-pattern-top-mobile.svg") left top no-repeat,
+      url("../images/bg-pattern-bottom-mobile.svg") right bottom no-repeat;
     /* largeurs de lettres non arrondies au pixel : les lignes se coupent comme sur l'image FM */
     text-rendering: geometricPrecision;
   }
