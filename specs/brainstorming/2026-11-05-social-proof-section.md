@@ -38,3 +38,10 @@ Koya : « Je valide (G3) » pour le lot 1. Maquette : `specs/visuel/penpot/maque
 | G3-3 | Photos | Sans contour, comme l'image FM |
 | G3-4 | Note « Reviews » (mobile) | Centrée, comme les deux autres (l'image FM la décale de 4 px) |
 | G3-5 | Tablette (Q-B2) | Disposition mobile dans une colonne de 540 px centrée |
+
+## Spec, ADR et verrou code (2026-11-05)
+
+- Spec : `specs/specifications/social-proof-section.md` ; tests écrits avant le code, contrôle rouge fait (voir les commits `test:`).
+- ADR : `specs/adr/v1.0/` (ADR-0003 à ADR-0006).
+- **Verrou code** : Koya confirme « Claude écrit le code ».
+
