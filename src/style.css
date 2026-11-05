@@ -33,6 +33,19 @@
   --radius-card: 0.5rem;
 }
 
+/* G3-1 : liens de l'attribution, soulignés sauf au survol ; contour de focus de 2 px décalé de 2 px */
+@utility link {
+  color: var(--color-link);
+  text-decoration-line: underline;
+  &:hover {
+    text-decoration-line: none;
+  }
+  &:focus-visible {
+    outline: 0.125rem solid var(--color-link);
+    outline-offset: 0.125rem;
+  }
+}
+
 @layer base {
   /* ADR-0005 : motifs décoratifs en fond, en haut à gauche et en bas à droite */
   body {
