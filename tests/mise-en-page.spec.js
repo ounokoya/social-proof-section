@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { open, title, intro, ratings, testimonials, footer, box, near, overlap, textBox } from './helpers.js'
+import { open, title, intro, ratings, testimonials, footer, box, near, overlap, textBox, cssColor } from './helpers.js'
 
 // Spec §4 — S1 à S6 (positions de la maquette Penpot, à 1 px près)
 
@@ -84,3 +84,11 @@ for (const [width, height] of [[1440, 800], [375, 1530]]) {
     expect(Math.abs((t.left + t.right) / 2 - width / 2)).toBeLessThanOrEqual(1)
   })
 }
+
+// Phase 8, écart E1 : sans fond déclaré, un navigateur en thème sombre peut montrer son propre fond sous la page
+test('E1 — 375 px : fond de page blanc déclaré, même si l\'appareil est en thème sombre', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'dark' })
+  await open(page, 375, 800)
+  const background = await page.evaluate(() => getComputedStyle(document.body).backgroundColor)
+  expect(background).toBe(await cssColor(page, 'hsl(0, 0%, 100%)'))
+})
