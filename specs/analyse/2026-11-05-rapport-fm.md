@@ -16,4 +16,5 @@
 | Date | Version relue par FM | Résultat |
 |---|---|---|
 | 2026-11-05 | v1.0.0 (soumission) | 1 remarque (R1) |
-| à faire | v1.0.1 | « Regenerate report » (gratuit, sans rapport IA), après publication avec l'accord de Koya |
+| 2026-11-05 | v1.0.1 | Publiée et déployée (accord de Koya), 33 / 33 en ligne ; « Regenerate report » (gratuit, sans rapport IA) : **0 remarque** (Accessibility 0, HTML 0, CSS 0, JavaScript 0), relu après rechargement |
+| plus tard | v1.0.1 | Rapport IA avec un crédit ou Pro (étape F du plan) |
