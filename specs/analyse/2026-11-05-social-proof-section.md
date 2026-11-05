@@ -46,6 +46,10 @@ Constats de la construction (Phase 6), sans écart restant :
 - Comparaisons visuelles avec `--disable-lcd-text` (texte lissé en gris, comme les images FM).
 - Tablette (G3-5) : cartes de 206 px espacées de 20 px dès 768 px.
 
-## 4. Verdict
+## 4. En ligne (Phase 12)
+
+`BASE_URL=https://ounokoya.github.io/social-proof-section/ npx playwright test --workers=2` : **31 réussis sur 31**, sur la v1.0.0 déployée depuis la branche `gh-pages` (dépôt public créé avec l'accord de Koya).
+
+## 5. Verdict
 
 Conforme à la spec et à la maquette validée (G3). Prêt pour la Phase 9 (README).
