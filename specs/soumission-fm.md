@@ -1,6 +1,8 @@
 # Soumission Frontend Mentor
 
 > SDL-FM 1.5.0 Phase 13. Textes préparés pour le formulaire « Submit solution » du challenge. La soumission est publique et faite au nom de Koya : elle n'est envoyée qu'avec son accord, au moment de l'envoi.
+>
+> **Envoyée le 2026-11-05** avec l'accord de Koya, textes ci-dessous inchangés (les 4 tags existent sur FM) : https://www.frontendmentor.io/solutions/social-proof-section-tailwind-v4-staggered-layout-and-semantic-quotes-WV--E9iokR
 
 ## Informations générales
 

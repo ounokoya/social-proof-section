@@ -31,6 +31,7 @@ Users should be able to:
 
 ### Links
 
+- Solution URL: [frontendmentor.io/solutions/social-proof-section-tailwind-v4-staggered-layout-and-semantic-quotes-WV--E9iokR](https://www.frontendmentor.io/solutions/social-proof-section-tailwind-v4-staggered-layout-and-semantic-quotes-WV--E9iokR)
 - Live Site URL: [ounokoya.github.io/social-proof-section](https://ounokoya.github.io/social-proof-section/)
 
 ## My process
