@@ -13,8 +13,8 @@ Une section de preuve sociale pour une boutique : un titre et une accroche, troi
 |---|---|---|
 | Titre | « 10,000+ of our users love our products. » | `h1` |
 | Accroche | « We only provide great products combined with excellent customer service. See what our satisfied customers are saying about our services. » | `p` |
-| Notes | 3 éléments : 5 étoiles décoratives (`icon-star.svg`) + « Rated 5 Stars in Reviews », « … in Report Guru », « … in BestTech » | `ul` nommée « Ratings », un `li` par note (Q-B1) |
-| Témoignages | 3 éléments : photo (`image-colton.jpg`, `image-irene.jpg`, `image-anne.jpg`), nom, « Verified Buyer », citation (texte de l'image FM, guillemets compris) | `ul` nommée « Testimonials » ; chaque `li` contient une `figure` : `blockquote` pour la citation, `figcaption` pour la photo, le nom et « Verified Buyer » (Q-B1) |
+| Notes | 3 éléments : 5 étoiles décoratives (`icon-star.svg`) + « Rated 5 Stars in Reviews », « … in Report Guru », « … in BestTech » | titre `h2` masqué « Ratings » qui nomme la `ul` (`aria-labelledby`), un `li` par note (Q-B1) |
+| Témoignages | 3 éléments : photo (`image-colton.jpg`, `image-irene.jpg`, `image-anne.jpg`), nom, « Verified Buyer », citation (texte de l'image FM, guillemets compris) | titre `h2` masqué « Testimonials » qui nomme la `ul` ; chaque `li` contient une `figure` : `blockquote` pour la citation, `figcaption` pour la photo, le nom et « Verified Buyer » (Q-B1) |
 | Motifs de fond | `bg-pattern-top-*`, `bg-pattern-bottom-*` (desktop et mobile) | décoratifs |
 | Pied de page (G3-1) | « Challenge by Frontend Mentor. Coded by Koya Esdras. » ; liens vers `https://www.frontendmentor.io?ref=challenge` et `https://www.frontendmentor.io/profile/ounokoya` | `footer` |
 
@@ -68,7 +68,7 @@ Rien d'autre n'est interactif ; la page n'a aucune animation.
 
 | # | Contrat |
 |---|---|
-| A1 | Un seul `h1` : le titre. |
+| A1 | Un seul `h1` : le titre ; les deux listes ont un titre `h2` masqué (v1.0.1, remarque FM : pas d'`aria-label` sur une `ul`). |
 | A2 | Les étoiles sont décoratives (Q-A3) : ignorées par les lecteurs d'écran ; le texte « Rated 5 Stars in … » porte l'information. |
 | A3 | Les photos sont décoratives (`alt=""`) : le nom est écrit à côté. |
 | A4 | Chaque témoignage est une figure : la citation (`blockquote`) et sa légende (nom, « Verified Buyer ») sont reliées. |
