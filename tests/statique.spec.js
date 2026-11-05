@@ -1,12 +1,15 @@
 import { test, expect } from '@playwright/test'
 import { execFileSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
 import { HtmlValidate } from 'html-validate'
 import { ESLint } from 'eslint'
 
-// Spec §7 — S14 à S16 : validateur W3C Nu et règles des vérifications automatiques de FM
+// Spec §7 — S14 à S16 : validateur W3C Nu et règles des vérifications automatiques de FM ;
+// fitness functions des ADR-0003 et ADR-0004
 
 const root = (path) => new URL(`../${path}`, import.meta.url)
 const vnu = root('node_modules/vnu-jar/build/dist/vnu.jar').pathname
+const COLOR = /#[0-9a-f]{3,8}\b|\brgba?\(|\bhsla?\(/i
 
 test('S14 — le HTML servi passe le validateur W3C Nu sans erreur', async ({ request }) => {
   const html = await (await request.get('./')).text()
@@ -37,4 +40,27 @@ test('S16 — Règles FM : eslint sans erreur dans le JavaScript du dépôt', as
   const results = await eslint.lintFiles(['src', 'tests', '*.js'])
   const errors = results.flatMap((r) => r.messages.map((m) => `${r.filePath.split('/').slice(-2).join('/')}:${m.line} ${m.ruleId} — ${m.message}`))
   expect(errors).toEqual([])
+})
+
+test('ADR-0003 — aucune couleur écrite en dur hors des tokens', () => {
+  const sources = {
+    'index.html': readFileSync(root('index.html'), 'utf8'),
+    // les tokens sont des propriétés personnalisées (--…) : seules leurs valeurs portent des couleurs
+    'src/style.css (hors tokens)': readFileSync(root('src/style.css'), 'utf8').replace(/--[\w-]+\s*:[^;]+;/g, ''),
+  }
+  expect(Object.entries(sources).filter(([, text]) => COLOR.test(text)).map(([file]) => file)).toEqual([])
+})
+
+test('ADR-0004 — rien n\'est chargé hors du domaine ; League Spartan 400, 500 et 700 se chargent', async ({ page, baseURL }) => {
+  const outside = []
+  page.on('request', (r) => { if (new URL(r.url()).origin !== new URL(baseURL).origin) outside.push(r.url()) })
+  await page.goto('./')
+  // load() télécharge la graisse même si aucun texte ne l'utilise encore ; [] si la police n'est pas déclarée
+  const weights = await page.evaluate(async () => {
+    const found = []
+    for (const w of ['400', '500', '700']) if ((await document.fonts.load(`${w} 16px "League Spartan"`)).length) found.push(w)
+    return found
+  })
+  expect(weights).toEqual(['400', '500', '700'])
+  expect(outside).toEqual([])
 })
