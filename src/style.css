@@ -1,1 +1,28 @@
 @import "tailwindcss";
+/* ADR-0004 : League Spartan servie avec le site */
+@import "@fontsource/league-spartan/400.css";
+@import "@fontsource/league-spartan/500.css";
+@import "@fontsource/league-spartan/700.css";
+
+/* ADR-0003 : tokens de la bibliothèque Penpot (specs/visuel/penpot/maquette.md) */
+@theme {
+  --color-*: initial;
+  --color-very-dark-magenta: hsl(300, 43%, 22%);
+  --color-soft-pink: hsl(333, 80%, 67%);
+  --color-dark-grayish-magenta: hsl(303, 10%, 53%);
+  --color-light-grayish-magenta: hsl(300, 24%, 96%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-paragraph: hsl(303, 10%, 47%); /* Q-A1 : 4,7:1 */
+  --color-verified: hsl(333, 80%, 70%); /* Q-A2 : 4,7:1 */
+  --color-link: hsl(228, 45%, 44%); /* G3-1 : liens de l'attribution (starter) */
+
+  --font-sans: "League Spartan", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-very-dark-magenta;
+    /* largeurs de lettres non arrondies au pixel : les lignes se coupent comme sur l'image FM */
+    text-rendering: geometricPrecision;
+  }
+}
